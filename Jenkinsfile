@@ -4,7 +4,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('mlkh93')
+        DOCKERHUB_CREDENTIALS = credentials('melydia')
     }
     stages {
         stage('Build') {
@@ -15,7 +15,7 @@ pipeline {
         stage('Login') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'mlkh93', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    withCredentials([usernamePassword(credentialsId: 'melydia', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     }
                 }
